@@ -1,13 +1,12 @@
 # REAL STATE HOUSING PRICE PREDICTION
 
 import pandas as pd
-
-housing = pd.read_csv("housing_data.csv")
 import  numpy as np
+housing = pd.read_csv("housing_data.csv")
 
 # print(housing.head())  # print top 5 rows
 
-# print(housing.info())  # give the info about out data entry
+# print(housing.info())  # give the info about out dataset
 
 # print(housing['CHAS'].value_counts())   # it will give the count of all values of any particular category data
 
@@ -51,7 +50,7 @@ housing = strat_train_set.copy()
 # Name: CHAS, dtype: int64
 
 # LOOKING FOR A CORRELATION--------------->
-# if we want to know the strongly affected features availabla into our dataset
+# if we want to know the strongly affected features available into our dataset
 
 corr_matrix = housing.corr()
 rel = corr_matrix['MEDV'].sort_values(ascending=False)
@@ -108,7 +107,6 @@ a = housing.dropna(subset=["RM"])    # oringinal dataframe will be unchanged
 # Option 2-->
 b = housing.drop("RM",axis = 1) # Note that there will be no "RM" column
 # original housing dataframe will be unchanged
-# if we want to change then use housing variable instead of a and b
 # print(b)
 
 #  Option 3 -->
@@ -153,7 +151,7 @@ housing_tr = pd.DataFrame(x , columns = housing.columns)
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 my_pipeline = Pipeline([('imputer', SimpleImputer(strategy = 'median')),
-    ('std_scalar',StandardScaler())]) # add as many as pipeline you want
+    ('std_scalar',StandardScaler())]) # add as many as you want
       
 
 housing_num_tr = my_pipeline.fit_transform(housing)
@@ -162,6 +160,7 @@ housing_num_tr = my_pipeline.fit_transform(housing)
 
 
 # SELECTING A MODEL --->
+# We will try different model to know that which one will give better result
 from sklearn.linear_model import LinearRegression
 # model = LinearRegression()
 # if we want to use decision tree regressor model
